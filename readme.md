@@ -4,7 +4,7 @@ This is my basic portfolio website for -
     - My Projets. 
     - Knowedges. 
 ## CLick here to go to my gihub portfolio site
-[Techstar Mahesh](https://github.com/techstarMahesh)
+[Techstar Mahesh](techstarmahesh.github.io)
 
 ### Here are the my some projects:- 
 [Calculator](https://techstarmahesh.github.io/Calculater-using-HTML-CSS-and-JavaScript/)
