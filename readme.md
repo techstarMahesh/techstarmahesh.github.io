@@ -3,8 +3,8 @@ This is my basic portfolio website for -
     - Show my all skills. 
     - My Projets. 
     - Knowedges. 
-## CLick here to go to my gihub portfolio site
-[Techstar Mahesh](https://github.com/techstarMahesh)
+## Click here to go to my gihub portfolio site
+[Techstar Mahesh](https://techstarmahesh.github.io/)
 
 ### Here are the my some projects:- 
 [Calculator](https://techstarmahesh.github.io/Calculater-using-HTML-CSS-and-JavaScript/)
