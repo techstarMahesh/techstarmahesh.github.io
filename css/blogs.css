@@ -1,0 +1,14 @@
+section{
+    margin: 50px;
+    margin-left: 100px;
+    margin-right: 100px;
+    text-align: justify;
+}
+
+h1{
+    font-size: xx-large;
+    color: rgb(211, 149, 35);
+}
+div{
+    color: blue;
+}

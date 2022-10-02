@@ -1,0 +1,50 @@
+body{
+    background-attachment: fixed;
+    background-image: url(/images/services.jpg);
+}
+
+.services{
+    margin-top: 100px;
+    margin-left: 650px;
+}
+ 
+.servicesContent {
+    /* position: relative; */
+    padding: 60px;
+    /* margin-left: 100px; */
+    color: black;
+    background-color: antiquewhite;
+    
+}
+
+.contectForm{
+    padding: 20px;
+    margin-top: 10px;
+    font-weight: bold;
+    color: black;
+}
+
+.contectForm button{
+    text-align: center;
+}
+.scontectForm{
+    font-size: larger;
+    
+}
+
+.labelcontectForm{
+    font-size: larger;
+    text-align: left;
+    
+}
+
+.sendButton{
+    font-size: larger;
+    padding: 10px;
+    margin: 10px;
+    /* margin-left: 80px; */
+}
+
+.formsm{
+    text-align: left;
+}

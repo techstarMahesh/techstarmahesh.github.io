@@ -1,0 +1,19 @@
+*{
+    padding: 0%;
+    margin: 0;
+    background-color: #e0e0e2;
+}
+.contaner{
+    display: flex;
+    padding: 20px;
+    padding-top: 20px;
+}
+
+.image{
+    padding: 10px;
+}
+.content p{
+    padding: 20px;
+    text-align: justify;
+    font-weight: 555;
+}

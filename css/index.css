@@ -1,0 +1,12 @@
+body{
+    background-attachment: fixed;
+    background-image: url(/images/index.JPG);
+}
+
+.h1Tag{
+    font-size: 70px;
+    color: blue;
+    margin: 50px;
+    padding: 50px;
+    margin-right: 600px;
+}

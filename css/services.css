@@ -1,0 +1,89 @@
+body{
+    background-attachment: fixed;
+    background-image: url(/images/services.jpg);
+}
+.services {
+    padding-left: 100px;
+    padding-top: 50px;
+    display: flex;
+    
+}
+
+.servicesLists {
+    padding-left: 30px;
+}
+
+.servicesList {
+    padding: auto;
+}
+
+.servicesListAnker {
+    text-decoration: none;
+    text-align: left;
+    text-align: left;
+    font-weight: 550;
+    font-size: xx-large;
+    color: wheat;
+    font-family: Lucida;
+    padding: 10px;
+}
+
+a:hover {
+    color: blueviolet;
+}
+
+a:active {
+    color: aqua;
+}
+
+.demo-wrap {
+    overflow: hidden;
+    position: relative;
+}
+
+.servicesBg {
+    opacity: 0.7;
+    position: absolute;
+    left: 0;
+    top: 62px;
+    width: 100%;
+    height: auto;
+}
+ 
+.servicesContent {
+    /* position: relative; */
+    padding: 100px;
+    /* margin-left: 100px; */
+    color: wheat;
+    font-size: large;
+    
+}
+
+.contectForm{
+    align-items: flex-end;
+    padding: 40px;
+    margin-left: 250px;
+    margin-top: 100px;
+    font-weight: bold;
+    background-color: antiquewhite;
+}
+
+.contectForm button{
+    text-align: center;
+}
+.scontectForm{
+    font-size: larger;
+    
+}
+
+.labelcontectForm{
+    font-size: larger;
+    
+}
+
+.sendButton{
+    font-size: larger;
+    padding: 10px;
+    margin: 10px;
+    margin-left: 80px;
+}
