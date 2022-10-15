@@ -1,7 +1,7 @@
-* {
+/* * {
     padding: 0%;
     margin: 0%;
-    /* background-color: antiquewhite; */
+    background-color: rgba(59, 68, 126, 0);
     font-family: 'Courier New', Courier, monospace;
 }
 
@@ -36,4 +36,11 @@ a:hover {
 
 a:active {
     color: aqua;
+} */
+
+
+.navColor{
+    background-color:rgb(87, 124, 163);
+    color: black;
+    font-weight: bold;
 }

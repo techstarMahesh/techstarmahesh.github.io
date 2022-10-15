@@ -5,28 +5,74 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/assets/bootstrap/css/all.min.css">
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="stylesheet" href="/static/css/index.css">
     <title>Mr Mahesh Sharma</title>
 </head>
 
 <body>
     <header>
-        <div class="navBar">
-            <ul class="navUl">
-                <li class="navLi"><a href="/index.html" class="navAnker">Techstar Mahesh</a></li>
-                <li class="navLi"><a href="/index.html" class="navAnker">Home</a></li>
-                <li class="navLi"><a href="/blogs.html" class="navAnker">Blogs</a></li>
-                <li class="navLi"><a href="/about.html" class="navAnker">About</a></li>
-                <li class="navLi"><a href="/services.html" class="navAnker">Services</a></li>
-                <li class="navLi"><a href="/contectUs.html" class="navAnker">Contect Us</a></li>
-            </ul>
-        </div>
+        <nav class="navbar navbar-expand-lg navColor">
+            <div class="container-fluid">
+                <a class="navbar-brand navColor" href="#">Techstar Mahesh</a>
+                <div class="d-flex">
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link active navColor" aria-current="page" href="#">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active navColor" aria-current="page" href="#">About</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active navColor" aria-current="page" href="#">Contect me</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active navColor" aria-current="page" href="#">Hire</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                </div>
+            </div>
+        </nav>
     </header>
 
-    <h1 class="h1Tag" >
-        Keep smiling, because life is a beautiful thing and there's so much to smile about
-    </h1>
+    <section class="p-5">
+        <div class="container-fluid">
+            <div class="row">
+                <div class=" col-md-8">
+
+                    <h1">
+                        <strong>
+                            A well-organized, creative and goal- oriented and team leader with good problem-solving
+                            skills
+                            with a flair to explore suitable avenues in Computer Application.
+                        </strong>
+                        </h1>
+
+                </div>
+
+                <div class=" col-md-4">
+                    <img src="/static/images/Form Pic2.jpg" class="img-fluid w-50 h-100" alt="...">
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    
+
+
+    <script src="/assets/bootstrap/js/all.min.js"></script>
+    <script src="/assets/bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
