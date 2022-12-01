@@ -509,19 +509,28 @@
                     Message me
                 </h4>
 
-                <form action="https://formspree.io/f/xrgdwoab" method="POST" class="navColor" >
+                <form id="myForm" action="https://formspree.io/f/xrgdwoab" method="POST" class="navColor">
                     <div class="form-group">
-                      <label>Email address</label>
-                      <input type="email" class="form-control" name="email" placeholder="Enter email" required>
+                        <label>Full Name</label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Enter Full Name" required oninvalid="this.setCustomValidity('Please enter Full Name')">
                     </div>
                     <div class="form-group">
-                        <label >
+                        <label for="phone">Phone Number:</label>
+                        <input type="tel" class="form-control" id="phone" name="phone" pattern="[6-9]{1}[0-9]{9}"
+                            placeholder="Enter phone Number" oninvalid="this.setCustomValidity('Please enter correct phone number')">
+                    </div>
+                    <div class="form-group">
+                        <label>Email address</label>
+                        <input type="email" class="form-control" name="email" placeholder="Enter email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>
                             Your message:
                             <textarea class="form-control" name="message" placeholder="Enter your message"></textarea required>
                           </label>
                     </div>
                         <h3>
-                                <button type="submit" class="btn btn-light">Submit</button>
+                            <button type="submit" class="btn btn-light">Submit</button>
                         </h3>
                   </form>
             </div>
