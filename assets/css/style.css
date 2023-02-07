@@ -1,0 +1,46 @@
+body {
+  background-color: #e0fbfc;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+
+.navColor {
+  background-color: #98c1d9;
+  color: black;
+  font-weight: bold;
+
+}
+
+/* Card image hovering effect */
+.img-pic {
+  width: auto;
+  height: auto;
+  transition: transform .5s;
+}
+
+.img-pic:hover {
+  transform: scale(1.6);
+}
+
+/* Card image hovering effect */
+.img-zoom {
+  width: auto;
+  height: 20rem;
+  transition: transform .5s;
+}
+
+.img-zoom:hover {
+  transform: scale(1.1);
+}
+
+/* Footer Contect form hover */
+.form-submit:hover {
+  color: white;
+  background-color: black;
+}
+
+.link-dark:hover {
+  color: blue;
+  font-weight: bold;
+}
+
