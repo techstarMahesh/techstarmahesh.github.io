@@ -1,3 +1,8 @@
+* {
+  padding: 0px;
+  margin: 0px;
+}
+
 body {
   background-color: #e0fbfc;
   font-family: 'Ubuntu', sans-serif;
@@ -5,10 +10,16 @@ body {
 
 
 .navColor {
-  background-color: #98c1d9;
+  /* background-color: #98c1d9; */
+  background-color: rgb(112, 164, 220);
+  /* background-color: rgb(87, 124, 163); */
   color: black;
   font-weight: bold;
+}
 
+.navbar-br {
+  font-size: 2rem;
+  font-weight: bold;
 }
 
 /* Card image hovering effect */
@@ -39,8 +50,11 @@ body {
   background-color: black;
 }
 
+.hireme {
+  margin: 2rem;
+}
+
 .link-dark:hover {
   color: blue;
   font-weight: bold;
 }
-
