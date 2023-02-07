@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/assets/bootstrap/css/all.min.css">
     <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/bootstrap/css/owl.carousel.min.css">
     <link rel="stylesheet" href="/assets/css/style.css">
 
     <!-- Google Font -->
@@ -519,33 +520,39 @@
                 </div>
                 <div class="col-md-3">
                     <h3>
-                        <i class="fa-solid fa-message-sms"></i> Message me
+                        Message me
                     </h3>
 
                     <form id="myForm" action="https://formspree.io/f/xrgdwoab" method="POST">
                         <div class="form-group">
                             <label>Full Name</label>
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Enter Full Name"
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Mahesh Sharma"
                                 required oninvalid="this.setCustomValidity('Please enter Full Name')">
                         </div>
                         <div class="form-group">
-                            <label for="phone">Phone Number:</label>
+                            <!-- <label for="phone">Phone Number:</label>
                             <input type="tel" class="form-control" id="phone" name="phone" pattern="[6-9]{1}[0-9]{9}"
                                 placeholder="Enter phone Number"
-                                oninvalid="this.setCustomValidity('Please enter correct phone number')">
+                                oninvalid="this.setCustomValidity('Please enter correct phone number')"> -->
+                            <label for="phoneNumber">Phone Number</label>
+                            <input type="text" class="form-control" id="phoneNumber" aria-describedby="phoneNumberHelp"
+                                placeholder="9918513434">
+                            <small id="phoneNumberHelp" class="form-text text-muted">We'll never share your phone number
+                                with anyone else.</small>
                         </div>
                         <div class="form-group">
                             <label>Email address</label>
-                            <input type="email" class="form-control" name="email" placeholder="Enter email" required>
+                            <input type="email" class="form-control" name="email"
+                                placeholder="mistermaheshsharma@gmail.com" required>
                         </div>
                         <div class="form-group">
                             <label>
                                 Your message:
-                                <textarea class="form-control" name="message" placeholder="Enter your message"></textarea required>
+                                <textarea class="form-control" name="message" placeholder="Hello"></textarea required>
                           </label>
                     </div>
                         <h3>
-                            <button type="submit" class="btn btn-light form-submit">Submit</button>
+                            <button onclick="return validatePhoneNumber()" type="submit" class="btn btn-light form-submit"><i class="fa-solid fa-message-arrow-up-right"></i><i class="fa-brands fa-telegram"></i> Send Massage</button>
                         </h3>
                   </form>
                 </div>
@@ -559,8 +566,7 @@
         <script src="/assets/bootstrap/js/all.min.js"></script>
         <script src="/assets/bootstrap/js/bootstrap.bundle.min.js"></script>
         <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
-        <script src="/assets/bootstrap/js/jquery-3.5.1.slim.min.js"></script>
-        <script src="/assets/bootstrap/js/popper.min.js"></script>
+        <script src="/assets/bootstrap/js/owl.carousel.min.js"></script>
         <script src="/assets/js/myscript.js"></script>
 </body>
 
