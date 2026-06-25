@@ -1,572 +1,298 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Meta Data -->
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/assets/bootstrap/css/all.min.css">
-    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/assets/bootstrap/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="/assets/css/style.css">
+  <title>Mahesh Sharma — Backend Engineer</title>
+  <meta name="description" content="Mahesh Sharma — Backend Engineer building scalable distributed systems, real-time logistics platforms, and AI-driven applications with Python, Django, FastAPI, and Redis." />
+  <meta name="author" content="Mahesh Sharma" />
 
-    <!-- Google Font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+  <link rel="canonical" href="https://techstarmahesh.github.io/" />
 
-    <!-- Font awsome cdn link -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
-        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- Open Graph -->
+  <meta property="og:title" content="Mahesh Sharma — Backend Engineer" />
+  <meta property="og:description" content="Backend Engineer specializing in scalable distributed systems, microservices, async processing, and high-throughput APIs." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://techstarmahesh.github.io/" />
+  <meta property="og:image" content="https://techstarmahesh.github.io/assets/og-cover.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
 
-    <!-- Title icon -->
-    <link rel="icon" type="image/x-icon" href="/assets/images/TechstarMahesh.png">
-    <link rel="icon" type="image/png" href="/assets/images/TechstarMahesh.png">
+  <!-- Twitter card (mirrors OG) -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Mahesh Sharma — Backend Engineer" />
+  <meta name="twitter:description" content="Backend Engineer specializing in scalable distributed systems, microservices, async processing, and high-throughput APIs." />
+  <meta name="twitter:image" content="https://techstarmahesh.github.io/assets/og-cover.png" />
 
-    <!-- Title Name -->
-    <title>@TechstarMahesh</title>
+  <!-- Structured data: Person (helps search engines + rich results) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Mahesh Sharma",
+    "jobTitle": "Backend Engineer",
+    "url": "https://techstarmahesh.github.io/",
+    "email": "mailto:mistermaheshsharma@gmail.com",
+    "sameAs": [
+      "https://github.com/techstarmahesh",
+      "https://www.linkedin.com/in/techstarmahesh/",
+      "https://leetcode.com/techstarmahesh/"
+    ]
+  }
+  </script>
+
+  <!-- Inline SVG favicon: terminal ">_" glyph (no external request) -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230a0e14'/%3E%3Ctext x='12' y='44' font-family='monospace' font-size='34' fill='%234ee59a'%3E%3E_%3C/text%3E%3C/svg%3E" />
+
+  <!-- Single optional Google Fonts link for body sans; mono uses system stack -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/assets/css/styles.css" />
 </head>
-
-<!-- Body Started -->
 <body>
-    <header id="home">
+  <a class="skip-link" href="#main">Skip to content</a>
 
-        <!-- Navbar Started -->
-        <nav class="navbar navbar-expand-lg fixed-top navColor">
-            <div class="container-fluid">
-                <a class="navbar-brand navColor px-5" href="/">
-                    <h3>Mahesh Sharma</h3>
-                </a>
-                <div class="d-flex px-5">
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a class="nav-link active navColor" aria-current="page" href="/#home">
-                                    <h5>Home</h5>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active navColor" aria-current="page" href="/#about">
-                                    <h5>About</h5>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active navColor" aria-current="page" href="/#projects">
-                                    <h5>Projects</h5>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active navColor" aria-current="page" href="/#HireMe">
-                                    <h5>Hire Me</h5>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                </div>
-            </div>
-        </nav>
-        <!-- Navbar Ended -->
+  <!-- ===== Top navigation ===== -->
+  <header class="nav">
+    <div class="container nav__inner">
+      <a class="nav__brand" href="#home"><span class="prompt">&gt;_</span> mahesh.sh</a>
 
-    </header>
+      <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
+        menu
+      </button>
 
-    <!-- Introduction -->
-
-    <div class="p-5">
-        <section class="py-5">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-1 col-sm-12"></div>
-                    <div class=" col-md-6 col-sm-12">
-                        <h3>
-                            A well-organized, creative and goal- oriented with good problem-solving
-                            skills
-                        </h3>
-                        <p>
-                            I am a self-motivated, hardworking and enthusiastic person who is always ready to learn new
-                            things.
-                            I am a quick learner and have a good communication skill. I am a team player and have good
-                            interpersonal skills.
-                        </p>
-                        <h3 class="text-end">
-                            <strong>
-                                - Mahesh Sharma
-                            </strong>
-                        </h3>
-                    </div>
-                    <div class="col-md-1 col-sm-12"></div>
-                    <div class="col-md-2 col-sm-12 text-center">
-                        <img src="/assets/images/Myproject.png" class="img-fluid img-pic" alt="image of Mahesh Sharma">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-
-        <!-- Introduction Ended -->
-        <!-- Education -->
-
-        <div class="p-5" id="about"></div>
-
-        <div>
-            <div class=" text-capitalize">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <strong>
-                                <h1 class="text-center">
-                                    Education and Certification
-                                </h1>
-                            </strong>
-                        </div>
-                    </div>
-                </div>
-                <hr>
-                <div>
-                    <div class="row">
-                        <div class="col-md-2"></div>
-                        <div class="col-md-4">
-                            <h4>
-                                Master in Computer Application (MCA)
-                            </h4>
-                        </div>
-                        <div class="col-md-4">
-                            <h6>
-                                Chandigarh University, Punjab <strong>(2021-2023)</strong>
-                            </h6>
-                        </div>
-                        <div class="col-md-2"></div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-2"></div>
-                        <div class="col-md-4"></div>
-                        <div class="col-md-4">
-                            <p>
-                                <strong>CGPA:</strong> 8.2
-                            </p>
-                        </div>
-                        <div class="col-md-2"></div>
-                    </div>
-                </div>
-
-                <div>
-                    <div class="row">
-                        <div class="col-md-2"></div>
-                        <div class="col-md-4">
-                            <h4>
-                                Bachelor of Computer Application (BCA)
-                            </h4>
-                        </div>
-                        <div class="col-md-4">
-                            <h6>
-                                Makhanlal Chaturvedi University, Bhopal <strong>(2018-2021)</strong>
-                            </h6>
-                        </div>
-                        <div class="col-md-2"></div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-2"></div>
-                        <div class="col-md-4"></div>
-                        <div class="col-md-4">
-                            <p>
-                                <strong>CGPA:</strong> 8.3
-                            </p>
-                        </div>
-                        <div class="col-md-2"></div>
-                    </div>
-                </div>
-                <div>
-                    <div class="row">
-                        <div class="col-md-2"></div>
-                        <div class="col-md-4">
-                            <h4>
-                                Higher Secondary (12th)
-                            </h4>
-                        </div>
-                        <div class="col-md-4">
-                            <h6>
-                                Hanuman Intermediate College padrauna kushinager <strong>(2016)</strong>
-                            </h6>
-                        </div>
-                        <div class="col-md-2"></div>
-                    </div>
-                </div>
-                <div>
-                    <div class="row">
-                        <div class="col-md-2"></div>
-                        <div class="col-md-4">
-                            <h4>
-                                Secondary (10th)
-                            </h4>
-                        </div>
-                        <div class="col-md-4">
-                            <h6>
-                                Hanuman Inter College padrauna kushinager <strong>(2014)</strong>
-                            </h6>
-                        </div>
-                        <div class="col-md-2"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Education End -->
-
-        <!-- Projects -->
-        <div class="p-5" id="projects"></div>
-
-        <!-- Skills -->
-        <div class="container-fluid my-3">
-            <div class="row">
-                <div class="col-md-12">
-                    <strong>
-                        <h1 class="text-center">
-                            Training and Projects
-                        </h1>
-                    </strong>
-                </div>
-            </div>
-        </div>
-
-        <hr>
-
-        <!-- Training and Projects -->
-        <div class="container-fluid border-secondary card-group">
-            <div class="row">
-                <div class="col-lg-4 col-md-6">
-                    <div class="card">
-                        <img src="/assets/images/Wircard.png" class="img-zoom" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title"><a class="text-decoration-none link-dark" target="_blank"
-                                    href="https://github.com/techstarMahesh/WireCart">Wirecart (E-Commerce)</a></h5>
-                            <p class="card-text">
-                                We can buy and sell the products online and also have products recommendation system
-                                using
-                                machine learning.
-                            </p>
-                        </div>
-                        <div class="card-footer">
-                            <small class="text-muted">Last update April 2022</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="card">
-                        <img src="/assets/images/Airline.png" class="img-zoom" alt="Airline Reservation System">
-                        <div class="card-body">
-                            <h5 class="card-title"><a target="_blank" class="text-decoration-none link-dark"
-                                    href="https://github.com/techstarMahesh/ARS">Airline Reservation System</a> </h5>
-                            <p class="card-text">
-                                We can book the flight tickets online and also have the facility to cancel the tickets.
-                            </p>
-                        </div>
-                        <div class="card-footer">
-                            <small class="text-muted">Last updated on April 2021 </small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="card">
-                        <img src="/assets/images/BulkSMS.png" class="img-zoom" alt="Whatsapp BulkSMS">
-                        <div class="card-body">
-                            <h5 class="card-title"><a class="text-decoration-none link-dark" target="_blank"
-                                    href="https://github.com/techstarMahesh/sent-whatsapp-bulk-massage">Whatsapp
-                                    bulk SMS Sender</a>
-                            </h5>
-                            <p class="card-text">
-                                We can send the bulk SMS to the customers using Whatsapp.
-                            </p>
-                        </div>
-                        <div class="card-footer">
-                            <small class="text-muted">Last updated 3 mins ago</small>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Projects End -->
-
-        <!-- Skills -->
-
-        <div class="p-5">
-            <div class=" text-capitalize">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <strong>
-                                <h2 class="text-center">
-                                    Skills during Training and Projects
-                                </h2>
-                            </strong>
-                        </div>
-                    </div>
-                </div>
-                <hr>
-                <div>
-                    <div class="row">
-                        <div class="col-md-2"></div>
-                        <div class="col-md-4">
-                            <h4>
-                                C/C++
-                            </h4>
-                        </div>
-                        <div class="col-md-4">
-                            <!-- progress bar -->
-                            <div class="progress">
-                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-success"
-                                    role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"
-                                    style="width: 75%">
-                                    75%
-                                </div>
-                            </div>
-                            <div class="col-md-2"></div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-2"></div>
-                        <div class="col-md-4">
-                            <h4>
-                                JAVA Basic and Core
-                            </h4>
-                        </div>
-                        <div class="col-md-4">
-                            <!-- progress bar -->
-                            <div class="progress">
-                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-success"
-                                    role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"
-                                    style="width: 85%">
-                                    85%
-                                </div>
-                            </div>
-                            <div class="col-md-2"></div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-2"></div>
-                        <div class="col-md-4">
-                            <h4>
-                                Python
-                            </h4>
-                        </div>
-                        <div class="col-md-4">
-                            <!-- progress bar -->
-                            <div class="progress">
-                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-success"
-                                    role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"
-                                    style="width: 75%">
-                                    75%
-                                </div>
-                            </div>
-                            <div class="col-md-2"></div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-2"></div>
-                        <div class="col-md-4">
-                            <h4>
-                                MySQL
-                            </h4>
-                        </div>
-                        <div class="col-md-4">
-                            <!-- progress bar -->
-                            <div class="progress">
-                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-success"
-                                    role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"
-                                    style="width: 85%">
-                                    85%
-                                </div>
-                            </div>
-                            <div class="col-md-2"></div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-2"></div>
-                        <div class="col-md-4">
-                            <h4>
-                                Git/GitHub
-                            </h4>
-                        </div>
-                        <div class="col-md-4">
-                            <!-- progress bar -->
-                            <div class="progress">
-                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-success"
-                                    role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"
-                                    style="width: 90%">
-                                    90%
-                                </div>
-                            </div>
-                            <div class="col-md-2"></div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-2"></div>
-                        <div class="col-md-4">
-                            <h4>
-                                HTML
-                            </h4>
-                        </div>
-                        <div class="col-md-4">
-                            <!-- progress bar -->
-                            <div class="progress">
-                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-success"
-                                    role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"
-                                    style="width: 95%">
-                                    95%
-                                </div>
-                            </div>
-                            <div class="col-md-2"></div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-2"></div>
-                        <div class="col-md-4">
-                            <h4>
-                                CSS
-                            </h4>
-                        </div>
-                        <div class="col-md-4">
-                            <!-- progress bar -->
-                            <div class="progress">
-                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-success"
-                                    role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"
-                                    style="width: 60%">
-                                    60%
-                                </div>
-                            </div>
-                            <div class="col-md-2"></div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-2"></div>
-                        <div class="col-md-4">
-                            <h4>
-                                Bootstrap
-                            </h4>
-                        </div>
-                        <div class="col-md-4">
-                            <!-- progress bar -->
-                            <div class="progress">
-                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-success"
-                                    role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"
-                                    style="width: 95%">
-                                    90%
-                                </div>
-                            </div>
-                            <div class="col-md-2"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Hire me -->
-        <div class="p-3" id="HireMe"></div>
-
-        <section class="text-center">
-            <h3 class="hireme-heading">
-                <a class="text-decoration-none link-dark hireme" target="_blank"
-                    href="https://drive.google.com/file/d/1eKcQ6OEVb2TXAPufAtvp2UT7SxTT13gE/view"><i
-                        class="fa-solid fa-file-pdf"></i> View
-                    Resume</a>
-                <a class="text-decoration-none link-dark hireme" target="_blank"
-                    href="mailto:mistermaheshsharma@gmail.com"><i class="fa-solid fa-envelope"></i> Email Me</a>
-            </h3>
-        </section>
+      <nav aria-label="Primary">
+        <ul class="nav__list" id="primary-nav">
+          <li><a class="nav__link" href="#home">about</a></li>
+          <li><a class="nav__link" href="#projects">projects</a></li>
+          <li><a class="nav__link" href="#skills">skills</a></li>
+          <li><a class="nav__link" href="#experience">experience</a></li>
+          <li><a class="nav__link" href="#contact">contact</a></li>
+        </ul>
+      </nav>
     </div>
+  </header>
 
-    <hr>
-
-    <!-- Footer Content -->
-    <div class="navColor">
-        <br>
-        <footer class="container navColor">
-            <div class="row">
-                <div class="col-md-1"></div>
-                <div class="col-md-3">
-                    <h3>
-                        Social Accounts
-                    </h3>
-                    <ul class="list-unstyled">
-                        <li><a class="text-decoration-none link-dark" href="https://github.com/techstarMahesh"
-                                target="_blank" rel="noopener noreferrer">GitHub</a></li>
-                        <li><a class="text-decoration-none link-dark" href="https://www.linkedin.com/in/techstarmahesh/"
-                                target="_blank" rel="noopener noreferrer">Linkedin</a></li>
-                        <li><a class="text-decoration-none link-dark" href="https://leetcode.com/techstarmahesh/"
-                                target="_blank" rel="noopener noreferrer">Leetcode</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-3">
-                    <h3>
-                        Contact me
-                    </h3>
-                    <ul class="list-unstyled">
-                        <li><a class="text-decoration-none link-dark" target="_blank"
-                                href="mailto:mistermaheshsharma@gmail.com">Email Me</a></li>
-                        <li><a class="text-decoration-none link-dark" target="_blank"
-                                href="https://t.me/TechstarMahesh">Message Me</a></li>
-                        <li><a class="text-decoration-none link-dark" target="_blank"
-                                href="https://drive.google.com/uc?export=download&id=1eKcQ6OEVb2TXAPufAtvp2UT7SxTT13gE">Download
-                                Resume</a></li>
-
-                    </ul>
-                </div>
-                <div class="col-md-3">
-                    <h3>
-                        Message me
-                    </h3>
-
-                    <form id="myForm" action="https://formspree.io/f/xrgdwoab" method="POST">
-                        <div class="form-group">
-                            <label>Full Name</label>
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Mahesh Sharma"
-                                required oninvalid="this.setCustomValidity('Please enter Full Name')">
-                        </div>
-                        <div class="form-group">
-                            <!-- <label for="phone">Phone Number:</label>
-                            <input type="tel" class="form-control" id="phone" name="phone" pattern="[6-9]{1}[0-9]{9}"
-                                placeholder="Enter phone Number"
-                                oninvalid="this.setCustomValidity('Please enter correct phone number')"> -->
-                            <label for="phoneNumber">Phone Number</label>
-                            <input type="text" class="form-control" id="phoneNumber" aria-describedby="phoneNumberHelp"
-                                placeholder="9918513434">
-                            <small id="phoneNumberHelp" class="form-text text-muted">We'll never share your phone number
-                                with anyone else.</small>
-                        </div>
-                        <div class="form-group">
-                            <label>Email address</label>
-                            <input type="email" class="form-control" name="email"
-                                placeholder="mistermaheshsharma@gmail.com" required>
-                        </div>
-                        <div class="form-group">
-                            <label>
-                                Your message:
-                                <textarea class="form-control" name="message" placeholder="Hello"></textarea required>
-                          </label>
-                    </div>
-                        <h3>
-                            <button onclick="return validatePhoneNumber()" type="submit" class="btn btn-light form-submit"><i class="fa-solid fa-message-arrow-up-right"></i><i class="fa-brands fa-telegram"></i> Send Massage</button>
-                        </h3>
-                  </form>
-                </div>
-                
-            </div>
-        </footer>
+  <main id="main">
+    <!-- ===== Hero + About ===== -->
+    <section class="section hero" id="home" aria-labelledby="hero-name">
+      <div class="container">
+        <!-- Terminal-styled intro -->
+        <div class="terminal" role="img" aria-label="Terminal showing: running whoami returns Backend Engineer at Infinite Locus">
+          <div class="terminal__bar" aria-hidden="true">
+            <span class="terminal__dot terminal__dot--r"></span>
+            <span class="terminal__dot terminal__dot--y"></span>
+            <span class="terminal__dot terminal__dot--g"></span>
+            <span class="terminal__name">mahesh@portfolio: ~</span>
+          </div>
+          <div class="terminal__body" aria-hidden="true">
+            <p class="terminal__line"><span class="prompt">$</span><span class="cmd">whoami</span></p>
+            <p class="terminal__out">Backend Engineer @ Infinite Locus</p>
+            <p class="terminal__line"><span class="prompt">$</span><span class="cmd">cat stack.txt</span></p>
+            <p class="terminal__out">Python · Django · FastAPI · Redis · Microservices</p>
+            <p class="terminal__line"><span class="prompt">$</span><span class="cmd">./hire-me<span class="cursor"></span></span></p>
+          </div>
         </div>
-        <!-- Footer End -->
 
-        <!-- Javascript code -->
-        <script src="/assets/bootstrap/js/all.min.js"></script>
-        <script src="/assets/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
-        <script src="/assets/bootstrap/js/owl.carousel.min.js"></script>
-        <script src="/assets/js/myscript.js"></script>
+        <p class="status-pill">
+          <span class="status-pill__dot" aria-hidden="true"></span>
+          Available for backend roles
+        </p>
+
+        <h1 class="hero__name" id="hero-name">Mahesh Sharma</h1>
+        <p class="hero__role">Backend Engineer · 3+ years building distributed systems · Gurugram / Mohali, India</p>
+
+        <p class="hero__pitch">
+          I build scalable distributed systems, real-time logistics platforms, and AI-driven backends —
+          and make slow APIs fast.
+        </p>
+        <p class="hero__bio">
+          Backend Engineer with experience designing high-throughput APIs, event-driven workflows, and
+          production-grade services across quick-commerce, AI SaaS, and video-processing platforms. Strong in
+          microservices architecture, asynchronous processing, performance optimization, and cloud deployments —
+          with a proven track record of reducing API latency and improving system reliability.
+        </p>
+
+        <div class="hero__links">
+          <a class="btn btn--primary" href="https://drive.google.com/uc?export=download&amp;id=1eKcQ6OEVb2TXAPufAtvp2UT7SxTT13gE" target="_blank" rel="noopener noreferrer">Download résumé</a>
+          <a class="btn" href="https://github.com/techstarmahesh" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a class="btn" href="https://www.linkedin.com/in/techstarmahesh/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a class="btn" href="https://leetcode.com/techstarmahesh/" target="_blank" rel="noopener noreferrer">LeetCode</a>
+          <a class="btn" href="mailto:mistermaheshsharma@gmail.com">Email</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Projects (rendered from /assets/js/projects.js) ===== -->
+    <section class="section" id="projects" aria-labelledby="projects-title">
+      <div class="container">
+        <h2 class="section__title" id="projects-title">projects</h2>
+        <p class="section__intro">
+          Production backend work across logistics, AI, and e-commerce. Company projects are proprietary
+          and have no public repo.
+        </p>
+        <div class="project-grid" id="project-grid">
+          <!-- JS injects project cards here -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Skills ===== -->
+    <section class="section" id="skills" aria-labelledby="skills-title">
+      <div class="container">
+        <h2 class="section__title" id="skills-title">skills</h2>
+        <div class="skills-grid">
+          <div class="skill-group">
+            <h3 class="skill-group__title">Languages</h3>
+            <ul class="tag-list">
+              <li class="tag">Python</li><li class="tag">SQL</li><li class="tag">Bash</li>
+              <li class="tag">JavaScript</li><li class="tag">C/C++</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <h3 class="skill-group__title">Frameworks</h3>
+            <ul class="tag-list">
+              <li class="tag">Django</li><li class="tag">FastAPI</li><li class="tag">Flask</li>
+              <li class="tag">LangChain</li><li class="tag">Langflow</li><li class="tag">Hugging Face</li>
+              <li class="tag">Node</li><li class="tag">NestJS</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <h3 class="skill-group__title">Databases</h3>
+            <ul class="tag-list">
+              <li class="tag">PostgreSQL</li><li class="tag">MySQL</li>
+              <li class="tag">MongoDB</li><li class="tag">SQLite</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <h3 class="skill-group__title">Cloud</h3>
+            <ul class="tag-list">
+              <li class="tag">AWS (EC2, S3, IAM, Lambda)</li><li class="tag">GCP (Cloud Run)</li>
+              <li class="tag">DigitalOcean</li><li class="tag">Vercel</li><li class="tag">Heroku</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <h3 class="skill-group__title">DevOps &amp; Tools</h3>
+            <ul class="tag-list">
+              <li class="tag">Git</li><li class="tag">Docker</li><li class="tag">Docker Compose</li>
+              <li class="tag">GitHub Actions</li><li class="tag">Nginx</li><li class="tag">Gunicorn</li>
+              <li class="tag">Redis</li><li class="tag">Celery</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <h3 class="skill-group__title">Architecture</h3>
+            <ul class="tag-list">
+              <li class="tag">REST APIs</li><li class="tag">JWT</li><li class="tag">OAuth2</li>
+              <li class="tag">MVC</li><li class="tag">Microservices</li>
+              <li class="tag">Caching</li><li class="tag">Rate Limiting</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <h3 class="skill-group__title">Testing &amp; Monitoring</h3>
+            <ul class="tag-list">
+              <li class="tag">Postman</li><li class="tag">Pytest</li><li class="tag">Locust</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Experience ===== -->
+    <section class="section" id="experience" aria-labelledby="experience-title">
+      <div class="container">
+        <h2 class="section__title" id="experience-title">experience</h2>
+        <ol class="timeline">
+          <li class="timeline__item">
+            <h3 class="timeline__role">Software Engineer</h3>
+            <p class="timeline__meta"><span class="at">Infinite Locus</span> · India · Oct 2025 – Present</p>
+            <ul class="timeline__list">
+              <li>Leading backend dev for quick-commerce logistics platform Zippee: scalable microservices for Pickup &amp; Delivery orchestration, Rider Shift Management, and geofence-based real-time tracking.</li>
+              <li>Designed distributed async pipelines with Redis (RQ, Pub/Sub) for high-throughput order-lifecycle events and background logistics workflows.</li>
+              <li>Improved production API performance via query optimization, caching, and service coordination — reducing latency from 5s to 1s.</li>
+              <li>Authored technical design docs, resolved critical production incidents, and ensured reliability and scalability.</li>
+            </ul>
+          </li>
+          <li class="timeline__item">
+            <h3 class="timeline__role">Software Developer</h3>
+            <p class="timeline__meta"><span class="at">Walkwel Technology</span> · Mohali, Punjab · Aug 2023 – Oct 2025</p>
+            <ul class="timeline__list">
+              <li>Built scalable backend systems for AI platforms, HR SaaS, and fintech using Django, DRF, PostgreSQL, and Redis.</li>
+              <li>Developed AI workflows with LangChain: vector search (FAISS, ChromaDB), prompt orchestration, memory pipelines, and multi-LLM integrations.</li>
+              <li>Implemented async processing with Celery (notifications, scheduled jobs, data pipelines).</li>
+              <li>Containerized with Docker, deployed on GCP Cloud Run, and set up CI/CD via GitHub Actions, Nginx, and Gunicorn.</li>
+              <li>Performance tuning (indexing, query tuning, scalable API patterns); mentored juniors; system design and agile.</li>
+            </ul>
+          </li>
+          <li class="timeline__item">
+            <h3 class="timeline__role">Associate Software Developer</h3>
+            <p class="timeline__meta"><span class="at">Walkwel Technology</span> · Mohali, Punjab · Feb 2023 – Aug 2023</p>
+            <ul class="timeline__list">
+              <li>Backend feature development with Django/DRF: auth flows, reporting modules, and dashboard APIs.</li>
+              <li>Debugging, database migrations, and deployments.</li>
+            </ul>
+          </li>
+        </ol>
+
+        <!-- Education + certifications -->
+        <div class="info-grid">
+          <div class="info-card">
+            <h3>Education</h3>
+            <ul>
+              <li>MCA (AI-ML) — Chandigarh University, Gharuan, Punjab <span class="yr">Aug 2021 – May 2023</span></li>
+              <li>BCA — Makhanlal Chaturvedi National University, Bhopal, MP <span class="yr">Aug 2018 – May 2021</span></li>
+            </ul>
+          </div>
+          <div class="info-card">
+            <h3>Certifications</h3>
+            <ul>
+              <li>Azure Fundamentals &amp; Azure AI Fundamentals — Microsoft <span class="yr">Apr 2023</span></li>
+              <li>Python Certification — Coursera <span class="yr">Jul 2022</span></li>
+              <li>DSA with Java — Infosys Springboard <span class="yr">Mar 2022</span></li>
+              <li>Smart India Hackathon — Govt. of India <span class="yr">Aug 2022</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Contact (links only) ===== -->
+    <section class="section" id="contact" aria-labelledby="contact-title">
+      <div class="container">
+        <h2 class="section__title" id="contact-title">contact</h2>
+        <p class="section__intro">Open to backend engineering roles and collaborations. The fastest way to reach me:</p>
+        <div class="contact__links">
+          <a class="contact__link" href="mailto:mistermaheshsharma@gmail.com">
+            <span class="label">email:</span> mistermaheshsharma@gmail.com
+          </a>
+          <a class="contact__link" href="https://github.com/techstarmahesh" target="_blank" rel="noopener noreferrer">
+            <span class="label">github:</span> techstarmahesh
+          </a>
+          <a class="contact__link" href="https://www.linkedin.com/in/techstarmahesh/" target="_blank" rel="noopener noreferrer">
+            <span class="label">linkedin:</span> techstarmahesh
+          </a>
+          <a class="contact__link" href="https://leetcode.com/techstarmahesh/" target="_blank" rel="noopener noreferrer">
+            <span class="label">leetcode:</span> techstarmahesh
+          </a>
+          <a class="contact__link" href="https://drive.google.com/uc?export=download&amp;id=1eKcQ6OEVb2TXAPufAtvp2UT7SxTT13gE" target="_blank" rel="noopener noreferrer">
+            <span class="label">résumé:</span> download PDF
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <span>&copy; <span id="year">2026</span> Mahesh Sharma</span>
+      <span>built static — HTML · CSS · vanilla JS</span>
+    </div>
+  </footer>
+
+  <!-- projects.js must load before main.js; defer preserves order and runs after parse -->
+  <script defer src="/assets/js/projects.js"></script>
+  <script defer src="/assets/js/main.js"></script>
 </body>
-
 </html>

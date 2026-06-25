@@ -1,0 +1,7 @@
+# Personal / local files — never publish to the public site repo
+linkedin-export/
+*.pdf
+*.docx
+
+# Local Claude Code tooling config
+.claude/settings.json
