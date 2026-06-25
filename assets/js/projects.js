@@ -2,9 +2,11 @@
  * projects.js — single source of truth for the Projects section.
  *
  * To add a project: copy one object in the array below and edit its fields.
- *   featured : true  -> shown with emphasis in the primary grid
+ *   featured : true  -> shown with emphasis (rendered first)
  *   link     : optional. Company work has no public repo, so omit it
- *              (the card simply renders without a link).
+ *              (the card simply renders without a "view" affordance).
+ *   endpoint : URL-style slug used in the docs-card header `GET /projects/<endpoint>`.
+ *   method   : HTTP method shown as the card's method badge (GET for all current work).
  *
  * The whole array is rendered into the DOM by main.js — do not hand-write
  * project cards in index.html.
@@ -12,6 +14,8 @@
 const PROJECTS = [
   {
     name: "Zippee",
+    endpoint: "zippee",
+    method: "GET",
     tagline: "Quick Commerce Logistics Platform",
     summary:
       "Real-time logistics platform handling Pickup & Delivery orchestration and Rider Shift Management.",
@@ -23,6 +27,8 @@ const PROJECTS = [
   },
   {
     name: "Capabara.ai",
+    endpoint: "capabara-ai",
+    method: "GET",
     tagline: "Multi-LLM AI Platform",
     summary:
       "Scalable AI platform integrating multiple LLM providers (OpenAI, Gemini, Cohere, Azure) with real-time model switching and context retention.",
@@ -33,6 +39,8 @@ const PROJECTS = [
   },
   {
     name: "ITECC",
+    endpoint: "itecc",
+    method: "GET",
     tagline: "AI Video Interview Platform",
     summary:
       "Real-time video interview system with ML-based facial emotion analysis and serverless video processing.",
@@ -43,6 +51,8 @@ const PROJECTS = [
   },
   {
     name: "Lead-Centre",
+    endpoint: "lead-centre",
+    method: "GET",
     tagline: "Lead Analytics Dashboard",
     summary:
       "Centralized lead ingestion from multiple sources with analytics dashboards.",
@@ -52,6 +62,8 @@ const PROJECTS = [
   },
   {
     name: "ITTT SMS",
+    endpoint: "ittt-sms",
+    method: "GET",
     tagline: "Zoho Integration Portal",
     summary:
       "SMS/MMS gateway integrated with Zoho CRM for automated communication workflows and device management.",
@@ -62,6 +74,8 @@ const PROJECTS = [
   },
   {
     name: "TEN X YOU",
+    endpoint: "ten-x-you",
+    method: "GET",
     tagline: "Sportswear & Athleisure Platform",
     summary:
       "E-commerce backend for a sportswear/athleisure brand — order management and customer engagement.",
@@ -71,6 +85,8 @@ const PROJECTS = [
   },
   {
     name: "SuperTails",
+    endpoint: "supertails",
+    method: "GET",
     tagline: "Pet Care & E-commerce Platform",
     summary:
       "Integrated pet-care and e-commerce backend — online consultations, pharmacy, and healthcare services.",

@@ -1,162 +1,278 @@
 /*
  * main.js — renders data-driven content and wires up small interactions.
  * Vanilla JS only. Depends on PROJECTS (assets/js/projects.js) being loaded first.
+ *
+ * Responsibilities:
+ *   1. Render endpoint-style project cards from PROJECTS (featured first).
+ *   2. Sidebar scroll-spy: set aria-current="page" on the active endpoint.
+ *   3. Mobile drawer: hamburger toggle, close on link-select, Escape, overlay.
+ *   4. Hero JSON line-by-line reveal (once, respecting reduced motion).
+ *   5. Footer year.
+ *
+ * Wrapped in an IIFE; all DOM access is guard-checked so a missing node
+ * never throws.
  */
 (function () {
   "use strict";
 
-  /* ---------- Helpers ---------- */
+  var prefersReducedMotion =
+    window.matchMedia &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  // Build a DOM element with attributes and children. Keeps render code terse
-  // while avoiding innerHTML (no untrusted data, but good hygiene).
-  function el(tag, attrs, children) {
-    const node = document.createElement(tag);
-    if (attrs) {
-      Object.keys(attrs).forEach(function (key) {
-        if (key === "class") node.className = attrs[key];
-        else if (key === "text") node.textContent = attrs[key];
-        else node.setAttribute(key, attrs[key]);
-      });
-    }
-    (children || []).forEach(function (child) {
-      node.appendChild(typeof child === "string" ? document.createTextNode(child) : child);
-    });
-    return node;
+  /* Small helper: escape user/data text before injecting as HTML. */
+  function esc(str) {
+    return String(str == null ? "" : str)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
   }
 
-  /* ---------- Render projects ---------- */
-
-  function projectCard(project) {
-    const header = el("div", { class: "project-card__head" }, [
-      el("h3", { class: "project-card__title", text: project.name }),
-      project.featured ? el("span", { class: "badge", text: "featured" }) : null,
-    ].filter(Boolean));
-
-    const tagline = el("p", { class: "project-card__tagline", text: project.tagline });
-    const summary = el("p", { class: "project-card__summary", text: project.summary });
-
-    // Impact line is prefixed with a terminal-style ">" via CSS for emphasis.
-    const impact = el("p", { class: "project-card__impact" }, [project.impact]);
-
-    const tags = el(
-      "ul",
-      { class: "tag-list", "aria-label": "Tech stack" },
-      (project.tech || []).map(function (t) {
-        return el("li", { class: "tag", text: t });
-      })
-    );
-
-    const children = [header, tagline, summary, impact, tags];
-
-    if (project.link) {
-      children.push(
-        el("a", {
-          class: "project-card__link",
-          href: project.link,
-          target: "_blank",
-          rel: "noopener noreferrer",
-          "aria-label": "View " + project.name + " (opens in new tab)",
-          text: "view project ->",
-        })
-      );
-    }
-
-    return el("article", { class: "project-card" + (project.featured ? " is-featured" : "") }, children);
-  }
-
+  /* ---------------------------------------------------------------------------
+     1. PROJECT CARDS (endpoint-documentation style)
+     ------------------------------------------------------------------------- */
   function renderProjects() {
-    const grid = document.getElementById("project-grid");
-    if (!grid || typeof PROJECTS === "undefined") return;
+    var grid = document.getElementById("project-grid");
+    if (!grid || typeof PROJECTS === "undefined" || !Array.isArray(PROJECTS)) {
+      return;
+    }
 
-    const featured = PROJECTS.filter(function (p) { return p.featured; });
-    const others = PROJECTS.filter(function (p) { return !p.featured; });
-
-    // Render featured first, then the rest — preserves résumé priority order.
-    featured.concat(others).forEach(function (p) {
-      grid.appendChild(projectCard(p));
+    // Featured first, otherwise keep authored (résumé) order. Stable sort.
+    var ordered = PROJECTS.slice().sort(function (a, b) {
+      return (b.featured ? 1 : 0) - (a.featured ? 1 : 0);
     });
+
+    var html = ordered
+      .map(function (p) {
+        var method = esc(p.method || "GET");
+        var methodClass = "badge--" + (p.method || "GET").toLowerCase();
+        var endpoint = esc(p.endpoint || "");
+        var tech = (p.tech || [])
+          .map(function (t) {
+            return '<li class="tech-tag">' + esc(t) + "</li>";
+          })
+          .join("");
+
+        // Optional "view" affordance only when a public link exists.
+        var view = p.link
+          ? '<a class="endpoint-card__view" href="' +
+            esc(p.link) +
+            '" target="_blank" rel="noopener noreferrer">view <span aria-hidden="true">&#8599;</span></a>'
+          : "";
+
+        return (
+          '<article class="endpoint-card' +
+          (p.featured ? " endpoint-card--featured" : "") +
+          '">' +
+          '<header class="endpoint-card__head">' +
+          '<span class="badge ' + methodClass + '">' + method + "</span>" +
+          '<code class="endpoint-card__path">/projects/' + endpoint + "</code>" +
+          '<span class="endpoint-card__name">' + esc(p.name) + "</span>" +
+          "</header>" +
+          '<div class="endpoint-card__body">' +
+          '<h3 class="endpoint-card__tagline">' + esc(p.tagline) + "</h3>" +
+          '<p class="endpoint-card__summary">' + esc(p.summary) + "</p>" +
+          '<p class="endpoint-card__impact">' +
+          '<span class="field">"impact":</span>' +
+          '<span class="val">' + esc(p.impact) + "</span>" +
+          "</p>" +
+          '<ul class="endpoint-card__tech">' +
+          '<li class="bracket" aria-hidden="true">"tech": [</li>' +
+          tech +
+          '<li class="bracket" aria-hidden="true">]</li>' +
+          "</ul>" +
+          view +
+          "</div>" +
+          "</article>"
+        );
+      })
+      .join("");
+
+    grid.innerHTML = html;
   }
 
-  /* ---------- Smooth scroll + active nav state ---------- */
-
-  function setupSmoothScroll() {
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
-      anchor.addEventListener("click", function (e) {
-        const id = anchor.getAttribute("href");
-        if (id === "#") return;
-        const target = document.querySelector(id);
-        if (!target) return;
-        e.preventDefault();
-        target.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "start" });
-        // Move focus to the target for keyboard/screen-reader users.
-        target.setAttribute("tabindex", "-1");
-        target.focus({ preventScroll: true });
-      });
-    });
-  }
-
-  // Highlight the nav link whose section is currently in view.
+  /* ---------------------------------------------------------------------------
+     2. SCROLL-SPY (sidebar active endpoint via IntersectionObserver)
+     ------------------------------------------------------------------------- */
   function setupScrollSpy() {
-    const links = Array.prototype.slice.call(document.querySelectorAll(".nav__link"));
-    const sections = links
-      .map(function (l) { return document.querySelector(l.getAttribute("href")); })
-      .filter(Boolean);
-    if (!("IntersectionObserver" in window) || !sections.length) return;
+    var links = Array.prototype.slice.call(
+      document.querySelectorAll(".endpoint-link[data-spy]")
+    );
+    if (!links.length || !("IntersectionObserver" in window)) return;
 
-    const observer = new IntersectionObserver(
+    // Map section id -> nav link.
+    var linkById = {};
+    links.forEach(function (link) {
+      linkById[link.getAttribute("data-spy")] = link;
+    });
+
+    var sections = links
+      .map(function (link) {
+        return document.getElementById(link.getAttribute("data-spy"));
+      })
+      .filter(Boolean);
+
+    // Track visibility ratios; the most-visible section wins.
+    var ratios = {};
+
+    function setActive(id) {
+      links.forEach(function (link) {
+        if (link.getAttribute("data-spy") === id) {
+          link.setAttribute("aria-current", "page");
+        } else {
+          link.removeAttribute("aria-current");
+        }
+      });
+    }
+
+    var observer = new IntersectionObserver(
       function (entries) {
         entries.forEach(function (entry) {
-          if (!entry.isIntersecting) return;
-          links.forEach(function (l) {
-            const isActive = l.getAttribute("href") === "#" + entry.target.id;
-            l.classList.toggle("is-active", isActive);
-            if (isActive) l.setAttribute("aria-current", "true");
-            else l.removeAttribute("aria-current");
-          });
+          ratios[entry.target.id] = entry.isIntersecting
+            ? entry.intersectionRatio
+            : 0;
         });
+
+        // Pick the section with the greatest visible area.
+        var best = null;
+        var bestRatio = 0;
+        Object.keys(ratios).forEach(function (id) {
+          if (ratios[id] > bestRatio) {
+            bestRatio = ratios[id];
+            best = id;
+          }
+        });
+        if (best) setActive(best);
       },
-      { rootMargin: "-45% 0px -50% 0px" }
+      {
+        // A band across the viewport so the "current read" section is chosen.
+        rootMargin: "-20% 0px -55% 0px",
+        threshold: [0, 0.25, 0.5, 0.75, 1],
+      }
     );
-    sections.forEach(function (s) { observer.observe(s); });
+
+    sections.forEach(function (sec) {
+      observer.observe(sec);
+    });
+
+    // Bottom-of-page fallback: the last short section (#contact / POST /hire)
+    // can't reach the active band, so force it active when scrolled to bottom.
+    // Only one link stays active because setActive() clears the others.
+    var atBottom = false;
+    function checkBottom() {
+      var bottom =
+        window.innerHeight + window.scrollY >= document.body.scrollHeight - 2;
+      if (bottom && !atBottom) {
+        atBottom = true;
+        if (linkById.contact) setActive("contact");
+      } else if (!bottom) {
+        atBottom = false;
+      }
+    }
+    window.addEventListener("scroll", checkBottom, { passive: true });
+
+    // Initialise with the first section active.
+    if (sections[0]) setActive(sections[0].id);
   }
 
-  /* ---------- Mobile nav toggle ---------- */
+  /* ---------------------------------------------------------------------------
+     3. MOBILE DRAWER
+     ------------------------------------------------------------------------- */
+  function setupDrawer() {
+    var toggle = document.getElementById("navToggle");
+    var sidebar = document.getElementById("sidebar");
+    var overlay = document.getElementById("overlay");
+    if (!toggle || !sidebar || !overlay) return;
 
-  function setupMobileNav() {
-    const toggle = document.querySelector(".nav__toggle");
-    const menu = document.getElementById("primary-nav");
-    if (!toggle || !menu) return;
+    function open() {
+      sidebar.classList.add("is-open");
+      overlay.classList.add("is-visible");
+      overlay.hidden = false;
+      toggle.setAttribute("aria-expanded", "true");
+      // Lock background scroll so the page can't move behind the overlay.
+      document.body.style.overflow = "hidden";
+      // Move focus into the drawer for keyboard users.
+      var first = sidebar.querySelector(".endpoint-link");
+      if (first) first.focus();
+    }
 
     function close() {
-      menu.classList.remove("is-open");
+      sidebar.classList.remove("is-open");
+      overlay.classList.remove("is-visible");
       toggle.setAttribute("aria-expanded", "false");
+      // Restore background scroll.
+      document.body.style.overflow = "";
+      // Keep focus sensible: return it to the toggle.
+      toggle.focus();
+    }
+
+    function isOpen() {
+      return sidebar.classList.contains("is-open");
     }
 
     toggle.addEventListener("click", function () {
-      const open = menu.classList.toggle("is-open");
-      toggle.setAttribute("aria-expanded", String(open));
+      if (isOpen()) close();
+      else open();
     });
-    // Collapse the menu after choosing a destination.
-    menu.querySelectorAll("a").forEach(function (a) {
-      a.addEventListener("click", close);
+
+    overlay.addEventListener("click", close);
+
+    // Close on Escape.
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && isOpen()) close();
+    });
+
+    // Close when an endpoint link is selected (mobile only).
+    sidebar.querySelectorAll(".endpoint-link").forEach(function (link) {
+      link.addEventListener("click", function () {
+        if (isOpen()) close();
+      });
     });
   }
 
-  /* ---------- Footer year ---------- */
+  /* ---------------------------------------------------------------------------
+     4. HERO JSON LINE-BY-LINE REVEAL (once)
+     ------------------------------------------------------------------------- */
+  function setupHeroReveal() {
+    var panel = document.querySelector(".rr .code-panel");
+    if (!panel) return;
 
+    var lines = Array.prototype.slice.call(panel.querySelectorAll(".ln"));
+    if (!lines.length) return;
+
+    // Reduced motion: leave everything visible, do nothing.
+    if (prefersReducedMotion) return;
+
+    // Arm the reveal: CSS now hides lines until .is-in is added.
+    panel.classList.add("reveal-armed");
+
+    lines.forEach(function (line, i) {
+      window.setTimeout(function () {
+        line.classList.add("is-in");
+      }, 90 * i + 120);
+    });
+  }
+
+  /* ---------------------------------------------------------------------------
+     5. FOOTER YEAR
+     ------------------------------------------------------------------------- */
   function setYear() {
-    const node = document.getElementById("year");
-    if (node) node.textContent = String(new Date().getFullYear());
+    var el = document.getElementById("year");
+    if (el) el.textContent = String(new Date().getFullYear());
   }
 
-  /* ---------- Init ---------- */
-
-  document.addEventListener("DOMContentLoaded", function () {
+  /* --- Boot --- */
+  function init() {
     renderProjects();
-    setupSmoothScroll();
     setupScrollSpy();
-    setupMobileNav();
+    setupDrawer();
+    setupHeroReveal();
     setYear();
-  });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
 })();
