@@ -54,10 +54,31 @@
           .join("");
 
         // Optional "view" affordance only when a public link exists.
+        // Descriptive link text includes the project name for accessibility/SEO.
         var view = p.link
           ? '<a class="endpoint-card__view" href="' +
             esc(p.link) +
-            '" target="_blank" rel="noopener noreferrer">view <span aria-hidden="true">&#8599;</span></a>'
+            '" target="_blank" rel="noopener noreferrer">view ' +
+            esc(p.name) +
+            ' <span aria-hidden="true">&#8599;</span></a>'
+          : "";
+
+        // Company tag (muted), shown under the endpoint path in the card head.
+        var org = p.org
+          ? '<span class="endpoint-card__org">' + esc(p.org) + "</span>"
+          : "";
+
+        // Illustrative sample metrics — only when present, and ALWAYS preceded
+        // by a visible "sample" pill so it never reads as a verified claim.
+        // The pill carries an SR-only label and a hover title for clarity.
+        var sample = p.sampleMetrics
+          ? '<p class="endpoint-card__sample">' +
+            '<span class="sample-tag" title="illustrative — pending verification">' +
+            '<span aria-hidden="true">sample</span>' +
+            '<span class="sr-only">sample metrics, pending verification:</span>' +
+            "</span>" +
+            '<span class="endpoint-card__sample-val">' + esc(p.sampleMetrics) + "</span>" +
+            "</p>"
           : "";
 
         return (
@@ -67,6 +88,7 @@
           '<header class="endpoint-card__head">' +
           '<span class="badge ' + methodClass + '">' + method + "</span>" +
           '<code class="endpoint-card__path">/projects/' + endpoint + "</code>" +
+          org +
           '<span class="endpoint-card__name">' + esc(p.name) + "</span>" +
           "</header>" +
           '<div class="endpoint-card__body">' +
@@ -76,6 +98,7 @@
           '<span class="field">"impact":</span>' +
           '<span class="val">' + esc(p.impact) + "</span>" +
           "</p>" +
+          sample +
           '<ul class="endpoint-card__tech">' +
           '<li class="bracket" aria-hidden="true">"tech": [</li>' +
           tech +
@@ -246,10 +269,11 @@
     // Arm the reveal: CSS now hides lines until .is-in is added.
     panel.classList.add("reveal-armed");
 
+    // ~50ms per line so the 8-line panel fully resolves under ~500ms.
     lines.forEach(function (line, i) {
       window.setTimeout(function () {
         line.classList.add("is-in");
-      }, 90 * i + 120);
+      }, 50 * i + 60);
     });
   }
 

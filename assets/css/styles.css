@@ -115,6 +115,19 @@ a:hover { text-decoration: underline; }
 }
 .skip-link:focus { top: var(--sp-3); }
 
+/* Visually hidden but available to screen readers */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 /* ----------------------------------------------------------------------------
    3. LAYOUT SHELL
    ---------------------------------------------------------------------------- */
@@ -207,8 +220,47 @@ a:hover { text-decoration: underline; }
   font-size: var(--fs-sm);
   color: var(--ink-soft);
   display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+/* Status row is now a link to #contact */
+.sidebar__status {
+  display: flex;
   align-items: center;
   gap: var(--sp-2);
+  color: var(--ink-soft);
+}
+.sidebar__status:hover { color: var(--ink); text-decoration: none; }
+
+/* Quick recruiter actions (always visible in the sticky sidebar) */
+.sidebar__cta {
+  display: flex;
+  gap: var(--sp-2);
+}
+.sidebar__cta-btn {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 38px;
+  padding: 0 var(--sp-3);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+.sidebar__cta-btn:hover { border-color: var(--brand); text-decoration: none; }
+.sidebar__cta-btn--primary {
+  color: #fff;
+  background: var(--brand);
+  border-color: var(--brand);
+}
+.sidebar__cta-btn--primary:hover {
+  background: var(--brand-ink);
+  border-color: var(--brand-ink);
 }
 
 /* Pulsing availability dot */
@@ -238,10 +290,12 @@ a:hover { text-decoration: underline; }
 #about .doc__title { font-size: var(--fs-h1); }
 h2.doc__title { font-size: var(--fs-h2); }
 
+/* Role + years: the human headline, louder than the JSON proof panel below. */
 .doc__role {
   margin: 0 0 var(--sp-4);
-  color: var(--ink-soft);
-  font-size: var(--fs-sm);
+  color: var(--ink);
+  font-size: var(--fs-base);
+  font-weight: 500;
 }
 .doc__lede {
   margin: 0 0 var(--sp-5);
@@ -500,6 +554,15 @@ h2.doc__title { font-size: var(--fs-h2); }
   font-size: var(--fs-sm);
   color: var(--ink);
 }
+/* Company tag in the card head — muted, sits beside the endpoint path */
+.endpoint-card__org {
+  font-size: 0.72rem;
+  color: var(--ink-soft);
+  padding: 1px 7px;
+  border: 1px solid var(--line);
+  border-radius: 99px;
+  background: var(--paper);
+}
 .endpoint-card__name {
   margin-left: auto;
   font-family: var(--font-display);
@@ -538,6 +601,37 @@ h2.doc__title { font-size: var(--fs-h2); }
   padding-top: 1px;
 }
 .endpoint-card__impact .val { color: var(--ink); }
+
+/* Illustrative sample metrics — deliberately NOT styled like the verified
+   impact block. Dashed left rule + muted text + amber "sample" pill signal
+   "not a verified claim" without looking broken. */
+.endpoint-card__sample {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: var(--sp-2) var(--sp-3);
+  margin: 0 0 var(--sp-4);
+  padding: var(--sp-2) var(--sp-3);
+  border-left: 2px dashed var(--line);
+  font-size: var(--fs-sm);
+  color: var(--ink-soft);          /* muted: AA on paper (~5.6:1) */
+}
+.endpoint-card__sample-val { color: var(--ink-soft); }
+
+/* "sample" pill: dashed amber outline, neutral/amber tone (never GET green,
+   to avoid implying a verified/OK status). */
+.sample-tag {
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #92400E;                  /* amber-800 on the tint ~6:1, passes AA */
+  background: #FFFBEB;             /* amber-50 */
+  border: 1px dashed #D97706;     /* amber dashed outline */
+  border-radius: 99px;
+  padding: 1px 8px;
+}
 
 /* tech array, JSON-style, in card (light surface) */
 .endpoint-card__tech {
