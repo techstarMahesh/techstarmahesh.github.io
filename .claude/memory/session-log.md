@@ -1,42 +1,45 @@
 ---
 name: session-log
-description: Curated chronological log of the build conversations — decisions, what was done, and open threads. Read this to pick up full context on any machine.
+description: Full project-journey log across BOTH repos (static github.io + Next.js msbinarydev). Read to pick up complete context on any machine.
 metadata:
   type: project
 ---
 
-# Session log
+# Session log — Mahesh Sharma portfolio (full journey)
 
-A human-readable journal of the work and decisions on this portfolio, committed to the repo so context travels to any clone / machine. This is a curated summary (not the verbatim chat — that lives in Claude Code's local `~/.claude` store and does not travel with git). Append new milestones at the bottom.
+Curated record of the work and decisions. Committed to BOTH repos so the full story travels with either clone. This is a curated summary, not the verbatim chat (the raw transcript lives in Claude Code's local `~/.claude` store and does not travel with git). Two repos exist:
+- **techstarmahesh.github.io** — the original plain HTML/CSS/JS site (GitHub Pages).
+- **msbinarydev** — the modern Next.js + Tailwind + Vercel rebuild.
 
-## 2026-06-25 — Initial build & decisions
+## Part 1 — static site (techstarmahesh.github.io)
 
-**Team setup.** Created four subagents in `.claude/agents/`: product-manager, frontend-developer, qa-responsive, product-improvement. Workflow rule established: features go product-manager → frontend-developer → qa-responsive → product-improvement; the main agent doesn't write feature code (trivial edits excepted). See [[dev-workflow]], [[agent-team]].
+- **Team:** created 4 subagents in `.claude/agents/` (product-manager, frontend-developer, qa-responsive, product-improvement). Workflow rule: features go PM → FE → QA → PI; main agent doesn't write feature code (trivial edits OK). See [[dev-workflow]], [[agent-team]].
+- **Requirements:** backend-engineer portfolio. First design = dark **terminal** theme; sections Hero+About / Projects / Skills / Experience / Contact; contact = links only (no form); public email mistermaheshsharma@gmail.com; phone kept private.
+- **Content:** LinkedIn auto-fetch was blocked (429); user provided a résumé PDF + a .docx of profile screenshots. Extracted into [[profile-content]]. Software Engineer @ Infinite Locus (Zippee logistics, cut API latency 5s→1s); prior Software Developer @ Walkwel. 7 projects (Zippee, Capabara.ai, ITECC, Lead-Centre, ITTT SMS, TEN X YOU, SuperTails).
+- **Build/QA/PI:** built terminal v1 (index.html + styles.css + projects.js data array + main.js). QA fixed an AA contrast issue + minor items. SEO bundle applied (generated og-cover.png, canonical, JSON-LD Person, sitemap, robots, defer) + hero "3+ years" + "Available for backend roles" pill.
+- **Domain:** custom domain techstarmahesh.me is NOT live — removed CNAME, pointed all URLs at https://techstarmahesh.github.io/. See [[live-url-github-io]].
+- **API-docs redesign:** explored 4 directions; user picked **API Reference / Docs** (light theme — sidebar endpoints, `GET /mahesh-sharma` request→response hero, endpoint project cards, JSON-schema skills, changelog experience, `POST /hire`). Built, QA-passed, improvement pass applied. Regenerated og-cover for the light theme.
+- **Sample metrics decision:** user wanted placeholder numbers; FE correctly refused to ship unlabeled fabricated metrics on a real job portfolio. Resolved by rendering illustrative numbers in a `sampleMetrics` field with a visible on-page amber **"sample"** tag — replace with real verified figures before sharing.
+- **Memory:** moved to project level (committed): `.claude/memory/` (shared) + `.claude/agent-memory/<agent>/` (per-agent). CLAUDE.md updated. Phone kept out of the repo.
+- **Branches (origin):** `master` (original Bootstrap site, live until a merge), `dev` (terminal rebuild + memory), `intigration` (API-docs redesign + improvement pass — most complete), plus older `v1`/`website`. NOTE: recent redesign work landed on `intigration`, not `dev`.
 
-**Requirements (product-manager interview).** Backend-engineer portfolio. First design picked: technical/terminal, dark. Sections: Hero+About, Projects, Skills, Experience (+Education/Certs), Contact. Contact = links only (no Formspree form). Public email mistermaheshsharma@gmail.com. Phone kept private.
+## Part 2 — Next.js rebuild (msbinarydev)
 
-**Content source.** LinkedIn auto-fetch was blocked (HTTP 429). User supplied a résumé PDF and a `.docx` of screenshots (which turned out to be LinkedIn/Naukri profile captures). All content extracted into [[profile-content]]. Key facts: Software Engineer @ Infinite Locus (Zippee logistics, cut API latency 5s→1s); prior Software Developer @ Walkwel. Projects: Zippee, Capabara.ai, ITECC, Lead-Centre (featured) + ITTT SMS, TEN X YOU, SuperTails.
+- **Decision:** build a modern, SEO-first version in a separate `msbinarydev` repo. Framework: **Next.js** (chosen over React+Vite for SEO) + **Tailwind v4** + **TypeScript** + **Vercel**.
+- **Branch model:** `toggle` (production — both themes + a terminal⇄docs toggle, defaults to terminal) / `terminal` (pinned) / `docs` (pinned). Pinned branches derive from `toggle` by flipping `src/lib/siteConfig.ts` (`defaultTheme` + `showToggle`).
+- **Build:** Next.js 16 + React 19 app — both themes via `[data-theme]` + no-flash SSR script, data-driven content (`src/data`), SEO (metadata, sitemap.ts, robots.ts, next/og OG image, JSON-LD Person). `npm run lint` + `npm run build` pass.
+- **QA (0 blockers):** fixed MobileNav focus management, tap targets, chrome width, nav-height token, hardcoded-hex→tokens.
+- **PI applied:** visible "Open to backend roles" pill, AI/LLM surfaced above the fold, per-project anchors, discoverable toggle (glyphs), footer quick-links, hero GitHub button, scrollspy, Zippee impact leads with 5s→1s, JSON-LD image, AI in meta description, MethodBadge per-verb tokens.
+- **Repo:** `git init`; pushed `toggle`/`terminal`/`docs` to the `msbinarydev` GitHub repo (via the `github-msbinarydev` SSH alias); deleted old branches `intigration`/`master`/`v1`/`website`. Its own `.claude/` (agents + memory updated for the Next.js stack) + `CLAUDE.md` with coding guidelines (component-per-feature, reuse, typed, data-driven, clean folders) are committed.
 
-**Terminal site built (v1).** index.html + assets/css/styles.css + assets/js/projects.js (PROJECTS data array) + assets/js/main.js. QA found 1 AA-contrast issue (`--text-dim` lightened to #8593a4) + minor tap-target/robustness fixes — all applied. product-improvement reviewed; user approved the SEO/social bundle (og:image via generated 1200×630 og-cover.png, canonical, JSON-LD Person, sitemap.xml, robots.txt, defer) + hero "3+ years" line + "Available for backend roles" pill. Declined for now: self-hosting résumé, dropping Google Fonts, visual-polish bundle.
+## Current state (both repos backed up on git as of 2026-06-26)
 
-**Domain change.** The custom domain techstarmahesh.me is NOT live — removed CNAME and pointed all absolute URLs at https://techstarmahesh.github.io/. See [[live-url-github-io]].
-
-**Memory & repo hygiene.** Moved all memory to project level (committed): `.claude/memory/` (shared) + `.claude/agent-memory/<agent>/` (per-agent). CLAUDE.md updated to reflect the rebuilt site + team/workflow. Phone number kept OUT of the repo. `.gitignore` protects `*.pdf`, `*.docx`, `linkedin-export/`, `.claude/settings.json`. All committed and pushed to branch `dev`.
-
-**New design direction chosen.** Explored 4 fresh directions (Observability Dashboard, API Reference/Docs, System Blueprint, Quiet Index). User picked **API Reference / Docs** — light theme, site reads like API documentation: hero `GET /mahesh-sharma` → JSON profile, projects as documented endpoints, experience as a releases/changelog, skills as a schema. Palette: white/cool-gray/navy-ink + indigo #4F46E5 brand + method-color badges + dark code panels. Type: Space Grotesk / Inter / JetBrains Mono. Signature: the request→response panel. frontend-developer is building it (replaces the terminal design; terminal version stays in git history).
-
-## 2026-06-26 — API-docs redesign shipped to dev + improvement pass
-
-- API-docs design built, QA-passed (fixed: GET-badge AA contrast, scroll-spy bottom fallback, mobile drawer scroll-lock, narrow-viewport curl overflow), committed (`aa2b304`).
-- `og-cover.png` regenerated to match the light docs identity.
-- product-improvement pass applied & pushed: hero value-prop promoted above the JSON panel; sticky sidebar Available→#contact link + Email/Résumé CTAs; JSON-LD enriched (worksFor/address/alumniOf/knowsAbout); sitemap `lastmod`; descriptive project link text; featured trimmed to 3 (Zippee/Capabara/ITECC); faster hero reveal; company `org` tags; factual scope added to impact lines.
-- **Sample metrics decision:** user asked for placeholder numbers; frontend-developer correctly refused to ship unlabeled fabricated metrics on a real job portfolio. Resolved by user choosing a visible safeguard: illustrative numbers live in a `sampleMetrics` field and render with an on-page amber **"sample"** tag (`title="illustrative — pending verification"`). Factual `impact` strings untouched. **These sample numbers must be replaced with real verified figures (or removed) before the portfolio is actively shared.**
-
-## Current state
-- Branch `dev`, not yet merged to `master`. **The live site is still the OLD Bootstrap site** until `dev` → `master`.
-- Current design on `dev` = the API-docs / light theme (the terminal design is earlier in git history).
+- **github.io:** branches `master` / `dev` / `intigration` (+ `v1`/`website`) all pushed to `origin`. Static site unchanged in spirit; latest design work on `intigration`.
+- **msbinarydev:** `toggle` / `terminal` / `docs` pushed. Stale `dev` branch (old static mirror) remains and is still the GitHub **default** — to be removed.
 
 ## Open threads / TODO
-- Replace the illustrative `sampleMetrics` in `assets/js/projects.js` with REAL verified numbers (or remove) before sharing — they currently render with a visible "sample" tag.
-- Add live/demo URLs for publicly visible projects (SuperTails, TEN X YOU): user said they'd provide; the card renderer supports an optional `link` → "view <name> ↗".
-- Merge `dev` → `master` to publish; also clear any custom-domain setting in GitHub → Settings → Pages so the CNAME isn't recreated.
+
+- **msbinarydev (user, GitHub UI):** set default branch to `toggle`, then delete the stale `dev` branch.
+- **msbinarydev (user, Vercel):** import repo → Production Branch = `toggle` → deploy → send the assigned URL so `SITE_URL` (in `src/lib/siteConfig.ts`) can be updated.
+- **Both:** replace illustrative `sampleMetrics` with real verified numbers before sharing (visible "sample" tag meanwhile); add live URLs for SuperTails / TEN X YOU when provided.
+- **github.io:** if the new design should go live on Pages, merge `intigration` → `master`.
