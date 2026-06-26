@@ -25,11 +25,18 @@ A human-readable journal of the work and decisions on this portfolio, committed 
 
 **New design direction chosen.** Explored 4 fresh directions (Observability Dashboard, API Reference/Docs, System Blueprint, Quiet Index). User picked **API Reference / Docs** — light theme, site reads like API documentation: hero `GET /mahesh-sharma` → JSON profile, projects as documented endpoints, experience as a releases/changelog, skills as a schema. Palette: white/cool-gray/navy-ink + indigo #4F46E5 brand + method-color badges + dark code panels. Type: Space Grotesk / Inter / JetBrains Mono. Signature: the request→response panel. frontend-developer is building it (replaces the terminal design; terminal version stays in git history).
 
+## 2026-06-26 — API-docs redesign shipped to dev + improvement pass
+
+- API-docs design built, QA-passed (fixed: GET-badge AA contrast, scroll-spy bottom fallback, mobile drawer scroll-lock, narrow-viewport curl overflow), committed (`aa2b304`).
+- `og-cover.png` regenerated to match the light docs identity.
+- product-improvement pass applied & pushed: hero value-prop promoted above the JSON panel; sticky sidebar Available→#contact link + Email/Résumé CTAs; JSON-LD enriched (worksFor/address/alumniOf/knowsAbout); sitemap `lastmod`; descriptive project link text; featured trimmed to 3 (Zippee/Capabara/ITECC); faster hero reveal; company `org` tags; factual scope added to impact lines.
+- **Sample metrics decision:** user asked for placeholder numbers; frontend-developer correctly refused to ship unlabeled fabricated metrics on a real job portfolio. Resolved by user choosing a visible safeguard: illustrative numbers live in a `sampleMetrics` field and render with an on-page amber **"sample"** tag (`title="illustrative — pending verification"`). Factual `impact` strings untouched. **These sample numbers must be replaced with real verified figures (or removed) before the portfolio is actively shared.**
+
 ## Current state
 - Branch `dev`, not yet merged to `master`. **The live site is still the OLD Bootstrap site** until `dev` → `master`.
-- API-docs redesign in progress.
+- Current design on `dev` = the API-docs / light theme (the terminal design is earlier in git history).
 
 ## Open threads / TODO
-- Add REAL project impact metrics to `assets/js/projects.js` (only Zippee is quantified; user to supply latency/throughput/scale numbers).
-- Regenerate `assets/og-cover.png` to match the new light API-docs design (current card is terminal-green).
+- Replace the illustrative `sampleMetrics` in `assets/js/projects.js` with REAL verified numbers (or remove) before sharing — they currently render with a visible "sample" tag.
+- Add live/demo URLs for publicly visible projects (SuperTails, TEN X YOU): user said they'd provide; the card renderer supports an optional `link` → "view <name> ↗".
 - Merge `dev` → `master` to publish; also clear any custom-domain setting in GitHub → Settings → Pages so the CNAME isn't recreated.
