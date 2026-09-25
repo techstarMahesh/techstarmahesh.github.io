@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mahesh Sharma — Redirecting…</title>
+  <meta name="description" content="Mahesh Sharma's portfolio has moved to msbinarydev.vercel.app.">
+
+  <!-- Tell search engines the site has moved -->
+  <link rel="canonical" href="https://msbinarydev.vercel.app/">
+  <meta name="robots" content="noindex, follow">
+
+  <!-- Redirect without JavaScript (works in every browser) -->
+  <meta http-equiv="refresh" content="0; url=https://msbinarydev.vercel.app/">
+
+  <!-- Faster redirect with JavaScript; keeps ?query and #hash, and skips this page in history -->
+  <script>
+    location.replace("https://msbinarydev.vercel.app/" + location.search + location.hash);
+  </script>
+
+  <style>
+    :root {
+      --bg: #0d1117;
+      --text: #e6edf3;
+      --muted: #8b949e;
+      --accent: #3fb950;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 16px;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "SF Mono", Menlo, Consolas, monospace;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 8vw, 4rem);
+      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
+    }
+
+    h1::before {
+      content: "> ";
+      color: var(--accent);
+    }
+
+    p {
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    a {
+      color: var(--accent);
+      text-underline-offset: 4px;
+    }
+
+    a:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 4px;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Mahesh Sharma</h1>
+    <p>This site has moved to a new home.</p>
+    <p>Redirecting you to <a href="https://msbinarydev.vercel.app/">msbinarydev.vercel.app</a>…</p>
+  </main>
+</body>
+</html>
